@@ -1,11 +1,9 @@
 import { IUserDocument, User } from "./models/User";
 import { validateObject } from "../validators";
 import { consoleLog } from "..";
-import { initDB } from "../db";
 
 
 export async function signup(userDetails: SignupDetails) {
-  initDB();
   const valid = validateObject(userDetails, {
     email: { reqd: true, type: "string" },
     firstName: { reqd: true, type: "string" },

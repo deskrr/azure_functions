@@ -1,7 +1,9 @@
 import { setLogFunction } from "./src";
 import { Context } from "@azure/functions";
+import { initDB } from "./src/db";
 
 export function initAzure(ctx: Context) {
+  initDB();
   setLogFunction((...msg) => ctx.log(...msg));
 }
 
