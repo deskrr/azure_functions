@@ -7,7 +7,9 @@ const userSchema = new Schema({
   firstName: String,
   lastName: String,
   password: { type: String, select: false }
-});
+  // manual collection specification is mandatory
+  // Shared throughput collection should have a partition key error will be thrown for mongoose handled collections
+}, { collection: "User" });
 
 userSchema.method("comparePassword", function(password: string): boolean {
   if (
