@@ -6,7 +6,8 @@ import { getToken } from "./jwt";
 export async function login(loginDetails: LoginParams) {
   const valid = validateObject(loginDetails, {
     email: { reqd: true, type: "string" },
-    password: { reqd: true, type: "string" }
+    password: { reqd: true, type: "string" },
+    scope: { reqd: true, type: ["WEB", "MONITOR"]}
   });
   if (!valid.isValid) {
     consoleLog("Signup: Invalid");
@@ -28,7 +29,7 @@ export async function login(loginDetails: LoginParams) {
     return {
       status: "R_200",
       msg: "success",
-      token: getToken({ user: user._id })
+      token: getToken({ user: user._id, scope: loginDetails.scope })
     }
   } else {
     return {
@@ -41,4 +42,5 @@ export async function login(loginDetails: LoginParams) {
 interface LoginParams {
   email: string;
   password: string;
+  scope: "WEB" | "MONITOR";
 }

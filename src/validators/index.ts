@@ -28,6 +28,6 @@ export interface ValidateRequestResponse {
 interface ValidationRule {
   [x: string]: {
     reqd: boolean;
-    type: "string" | number;
+    type: "string" | number | string[];
   };
 }
